@@ -1,6 +1,6 @@
 <template>
   <div class="phone">
-    
+
     <!-- show this when there's a call in progress -->
     <p v-if="activeCall">Call in progress.</p>
 
@@ -15,35 +15,47 @@
 </template>
 
 <script>
-// import the Device class from the SDK
+
+import { Device } from '@twilio/voice-sdk';
 
 export default {
   name: "Phone",
   data: function () {
     return {
       device: null,
-      activeCall: null
+      activeCall: null,
     };
   },
   methods: {
     async placeOutgoingCall() {
       // invoke device.connect to make an outgoing call
       // keep track of the Call instance that is returned
-
+      this.activeCall  = await this.device.connect();
       // add a 'disconnect' event listener to the call object
-         // set activecall to null in order to reset the UI
+      this.activeCall.addListener('disconnect', () => {
+        // set activecall to null, because it will reset the UI
+        this.activeCall = null;
+      })     
     }, 
     hangup() {
       // invoke .disconnect() on the Call instance
+      this.activeCall.disconnect();
     },
   },
   async mounted() {
-    
-      let response = await fetch(`Your accessToken endpoint here`);
-      const data = await response.json();
-      const token = data.token;
-      console.log('token :>> ', token);
-  },
+    //fetch a token
+    let response = await fetch(`Your accessToken endpoint here`);
+    const data = await response.json();
+    const token = data.token;
+
+    // create a new Device instance and save it in the component's data property
+    this.device = new Device(token, {logLevel: 1});
+
+    // add an 'error' event listener to the Device instance
+    this.device.addListener('error', (twilioError) => {
+      console.log(`Twilio Device error: ${twilioError.message}`)
+    });
+  }
 };
 </script>
 
