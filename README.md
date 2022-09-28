@@ -20,10 +20,10 @@ This project requires some server-side setup, which is outlined in the Server-Si
 To use this project, clone the repository and install the dependencies by running the following terminal commands: 
 
 ```bash
-git clone    
+git clone https://github.com/TwilioDevEd/levelup-add-a-phone-to-your-website    
 ```
 ```bash
-cd levelup-add-a-phone
+cd levelup-add-a-phone-to-your-website
 ```
 ```bash
 npm install
