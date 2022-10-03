@@ -4,6 +4,8 @@
 
 This repository is a sample Vue application meant to accompany a Twilio LevelUp webinar on the Twilio Voice JavaScript SDK. 
 
+* [Webinar slides](https://docs.google.com/presentation/d/1yXWP_XQegi1y6hR-tcORoe-OURfvUtNo-RCynRVrFDc/edit?usp=sharing)
+
 This repo contains guides and resources in the `/docs/` directory that will help you add VoIP functionality to an existing website:
 
 * [Server-Side and Twilio Account Setup](./docs/server-side.md)
