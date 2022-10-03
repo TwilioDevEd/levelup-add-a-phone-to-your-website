@@ -4,6 +4,8 @@
 
 This repository is a sample Vue application meant to accompany a Twilio LevelUp webinar on the Twilio Voice JavaScript SDK. 
 
+* [Webinar slides](https://docs.google.com/presentation/d/1yXWP_XQegi1y6hR-tcORoe-OURfvUtNo-RCynRVrFDc/edit?usp=sharing)
+
 This repo contains guides and resources in the `/docs/` directory that will help you add VoIP functionality to an existing website:
 
 * [Server-Side and Twilio Account Setup](./docs/server-side.md)
@@ -20,10 +22,10 @@ This project requires some server-side setup, which is outlined in the Server-Si
 To use this project, clone the repository and install the dependencies by running the following terminal commands: 
 
 ```bash
-git clone    
+git clone https://github.com/TwilioDevEd/levelup-add-a-phone-to-your-website    
 ```
 ```bash
-cd levelup-add-a-phone
+cd levelup-add-a-phone-to-your-website
 ```
 ```bash
 npm install
