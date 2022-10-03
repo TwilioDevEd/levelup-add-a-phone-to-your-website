@@ -136,54 +136,7 @@ Upon receiving an incoming call, your Device instance emits the 'incoming' event
 * You already added a 'reject' listener to this Call instance (within the 'incoming' event handler). The 'reject' event handler should update the UI appropriately for the end user to indicate that the incoming call has been rejected and no call is in progress.
 
 
-## Incoming call FAQs
-
-
-### **How does my SDK end user dial a phone number?**
-
-Relevant documentation
-
-
-
-* [Device ConnectOptions](https://www.twilio.com/docs/voice/sdks/javascript/twiliodevice#connectoptions)
-* The [Voice JavaScript SDK Quickstarts](https://www.twilio.com/docs/voice/sdks/javascript/get-started) also contain examples of this behavior.
-
-In order for an end user to dial a specific number, you will need to pass the information from the client side (i.e. the phone number) to your TwiML endpoint on the server side. You do this by passing an argument containing the information to the device.connect() method. 
-
-`device.connect()` accepts one argument, a "ConnectOptions" object, which can contain a `params` property. The `params` value must be an object containing key/value pairs of your custom information. 
-
-**Example: **
-
-
-    An end-user inputs "+15558889999" in a form on the front end. 
-
-
-    Set this phone number in your ConnectOptions object's `params` property. 
-
-
-    // Your JavaScript file
-
-
-    const connectOptions = {
-
-
-      params: { 
-
-
-        numberToDial: "+15558889999"
-
-
-      }
-
-
-    }
-
-
-    let call = await device.connect(connectOptions);
-
-
-    Your TwiML endpoint that handles outgoing calls can access this custom `numberToDial` parameter within Twilio's request body. You can then use the `numberToDial` value when creating the TwiML that you send back to Twilio. 
-
+## Incoming call FAQ
 
 ### **Can a call be sent to more than one SDK end user?**
 
