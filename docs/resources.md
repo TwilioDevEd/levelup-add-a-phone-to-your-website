@@ -44,7 +44,7 @@ You can create a TwiML App in the Twilio Console: **Voice > Manage > TwiML apps*
 
 You can use [the REST API to create them, too](https://www.twilio.com/docs/usage/api/applications#create-an-application-resource)
 
-***
+
 
 ## How does my SDK end user dial a phone number?
 
