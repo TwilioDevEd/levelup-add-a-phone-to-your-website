@@ -8,7 +8,7 @@ Incoming calls with the SDK work differently from outgoing calls. The main diffe
 
 
 
-* Calls are directed to your website's JS SDK end user by using the &lt;Client> noun inside &lt;Dial>. 
+* Calls are directed to your website's JS SDK end user by using the `<Client>` noun inside `<Dial>`. 
 * The AccessToken must have `incomingAllow:true` within the VoiceGrant
 * Your UI should now contain elements to handle incoming calls.
 * Your Device instance should have event listeners for the 'incoming' and 'registered' events.
@@ -16,17 +16,17 @@ Incoming calls with the SDK work differently from outgoing calls. The main diffe
 * The Device instance must be 'registered' with Twilio in order to receive calls. This is achieved by invoking the .register() method on the Device instance.
 
 
-### **Dial an SDK end user with &lt;Dial> and &lt;Client> TwiML**
+### **Dial an SDK end user with `<Dial>` and `<Client>` TwiML**
 
 Relevant documentation: 
 
 
-* [&lt;Dial>](https://www.twilio.com/docs/voice/twiml/dial)
-* [&lt;Client>](https://www.twilio.com/docs/voice/twiml/client)
+* [`<Dial>`](https://www.twilio.com/docs/voice/twiml/dial)
+* [`<Client>`](https://www.twilio.com/docs/voice/twiml/client)
 1. Set up a new TwiML endpoint for handling incoming calls. (TwiML Bins are the fastest way to test this out!)
 
-* Use the &lt;Dial> verb with &lt;Client> nested inside &lt;Dial>'s opening and closing tags. 
-* Within the &lt;Client> noun's opening and closing tags, place the `identity` of your end user's AccessToken
+* Use the `<Dial>` verb with `<Client>` nested inside `<Dial>'s opening and closing tags. 
+* Within the `<Client>` noun's opening and closing tags, place the `identity` of your end user's AccessToken
 2. Configure a Twilio Phone Number to use this TwiML endpoint to handle incoming calls
     * In the Twilio Console, on the Phone Number's configuration page, scroll down to **Voice & Fax > Configure With. Select TwiML Bin, and choose the new TwiML Bin you created.**
 
@@ -35,9 +35,7 @@ Relevant documentation:
 
 ### **Modify AccessTokens to allow incoming calls**
 
-Relevant documentation: 
-
-
+#### Relevant documentation
 
 * [AccessTokens](https://www.twilio.com/docs/iam/access-tokens#create-an-access-token-for-voice)
 
@@ -48,13 +46,10 @@ Modify your AccessToken endpoint so that AccessTokens now include the `incomingA
 
 Add the following pieces to your UI:
 
-
-
 * A message that states the device is ready to receive incoming calls.
 * A message that states that a call is incoming
-* An **Accept** &lt;button>
-* A **Reject** &lt;button>
-
+* An **Accept** `<button>`
+* A **Reject** `<button>`
 
 ### **Add event listeners to your Device instance**
 
@@ -119,20 +114,22 @@ Upon receiving an incoming call, your Device instance emits the 'incoming' event
 * Take the Call instance that was passed to the incoming event handler and add the following event listeners:
     * 'accept' event 
     * 'reject' event
-        * **Pro Tip**: Call instances do NOT emit 'reject' events when the other party rejects a call. This event is emitted when your local end user rejects an incoming call (as opposed to answering the call).
     * 'disconnect' event 
+
+    **Pro Tip**: Call instances do NOT emit 'reject' events when the other party rejects a call. This event is emitted when your local end user rejects an incoming call (as opposed to answering the call).
+
 * Add logic that updates the UI that shows the end user that they're receiving an incoming call. 
 * Save the Call instance in a variable or the component's state, since you will need to invoke methods such as .accept() or .reject() on that Call instance. 
 2. Allow users to accept a call
 * Create an `acceptIncomingCall` method that invokes the `call.accept()` method on the Call instance. 
-* Add a click listener to the **Accept** &lt;button> that invokes this `acceptIncomingCall` method.
+* Add a click listener to the **Accept** `<button>` that invokes this `acceptIncomingCall` method.
 * You already added an 'accept' listener to this Call instance (within the 'incoming' event handler). The 'accept' event handler should update the UI appropriately for the end user to let them know a call is in progress:
     * Hide the 'incoming call from …' message
-    * Hide the **Accept** and **Reject** &lt;button>s
-    * Show a **Hangup** &lt;button> (or enable it)
+    * Hide the **Accept** and **Reject** `<button>`s
+    * Show a **Hangup** `<button>` (or enable it)
 3. Allow users to reject a call
 * Create a `rejectIncomingCall` method that invokes the `call.reject()` method on the Call instance.
-* Add a click listener to the **Reject** &lt;button> that invokes the 'rejectIncomingCall' method.
+* Add a click listener to the **Reject** `<button> that invokes the 'rejectIncomingCall' method.
 * You already added a 'reject' listener to this Call instance (within the 'incoming' event handler). The 'reject' event handler should update the UI appropriately for the end user to indicate that the incoming call has been rejected and no call is in progress.
 
 
@@ -140,9 +137,9 @@ Upon receiving an incoming call, your Device instance emits the 'incoming' event
 
 ### **Can a call be sent to more than one SDK end user?**
 
-If you have multiple SDK end users that you want to answer a call, you can use &lt;Dial> and &lt;Client>. All of the end users' Device instances will "ring" until one of the end users accepts the call. 
+If you have multiple SDK end users that you want to answer a call, you can use `<Dial>` and `Client>`. All of the end users' Device instances will "ring" until one of the end users accepts the call. 
 
-The &lt;Dial> verb can have up to ten &lt;Client> nouns. 
+The `<Dial>` verb can have up to ten `<Client>` nouns. 
 
 For example: 
 
@@ -151,22 +148,11 @@ Lisa, Max, and Jameel are all end-users whose Device instances are registered wi
 Your Twilio account has a Twilio Phone Number that uses the following TwiML document for incoming calls: 
 
 ```xml
-
-
-    &lt;Dial> 
-
-
-      &lt;Client>Lisa&lt;/Client>
-
-
-      &lt;Client>Max&lt;/Client>
-
-
-      &lt;Client>Jameel&lt;/Client>
-
-
-    &lt;/Dial>
-
+    <Dial> 
+      <Client>Lisa<Client>
+      <Client>Max<Client>
+      <Client>Jameel<Client>
+    </Dial>
 ```
 
 When Twilio executes this TwiML document, Lisa, Max, and Jameel's Device instances will all emit the 'incoming' event for this call. 
