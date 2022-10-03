@@ -48,7 +48,7 @@ You can use [the REST API to create them, too](https://www.twilio.com/docs/usage
 
 ## How does my SDK end user dial a phone number?
 
-#### Relevant documentation
+### Relevant documentation
 
 * [Device ConnectOptions](https://www.twilio.com/docs/voice/sdks/javascript/twiliodevice#connectoptions)
 * The [Voice JavaScript SDK Quickstarts](https://www.twilio.com/docs/voice/sdks/javascript/get-started) also contain examples of this behavior.
@@ -57,7 +57,7 @@ In order for an end user to dial a specific number, you will need to pass the in
 
 `device.connect()` accepts one argument, a "ConnectOptions" object, which can contain a `params` property. The `params` value must be an object containing key/value pairs of your custom information. 
 
-#### Example:
+### Example:
 
 An end-user inputs "+15558889999" in a form on the front end. 
 
