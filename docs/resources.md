@@ -44,7 +44,39 @@ You can create a TwiML App in the Twilio Console: **Voice > Manage > TwiML apps*
 
 You can use [the REST API to create them, too](https://www.twilio.com/docs/usage/api/applications#create-an-application-resource)
 
-***
+
+
+## How does my SDK end user dial a phone number?
+
+### Relevant documentation
+
+* [Device ConnectOptions](https://www.twilio.com/docs/voice/sdks/javascript/twiliodevice#connectoptions)
+* The [Voice JavaScript SDK Quickstarts](https://www.twilio.com/docs/voice/sdks/javascript/get-started) also contain examples of this behavior.
+
+In order for an end user to dial a specific number, you will need to pass the information from the client side (i.e. the phone number) to your TwiML endpoint on the server side. You do this by passing an argument containing the information to the device.connect() method. 
+
+`device.connect()` accepts one argument, a "ConnectOptions" object, which can contain a `params` property. The `params` value must be an object containing key/value pairs of your custom information. 
+
+### Example:
+
+An end-user inputs "+15558889999" in a form on the front end. 
+
+Set this phone number in your ConnectOptions object's `params` property. 
+
+Your JavaScript file:
+
+```js
+const connectOptions = {
+  params: { 
+    numberToDial: "+15558889999"
+  }
+}
+
+let call = await device.connect(connectOptions);
+```
+
+Your TwiML endpoint that handles outgoing calls can access this custom `numberToDial` parameter within Twilio's request body. You can then use the `numberToDial` value when creating the TwiML that you send back to Twilio. 
+
 
 ## Tips
 
@@ -56,7 +88,7 @@ SSR frameworks (Vite, Nuxt, Next.js) will require that you dynamically import th
 
 Some frameworks' reactivity will not like the `call` and `device` objects. You can save these as normal variables, rather than in reactive properties/state/whatever so you avoid constant re-rendering. 
 
-***
+
 
 ## Troubleshooting 
 
