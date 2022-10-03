@@ -20,7 +20,7 @@ exports.handler = function (context, event, callback) {
   const twilioAccountSid = context.ACCOUNT_SID;
   const twilioApiKey = context.API_KEY;
   const twilioApiSecret = context.API_SECRET;
-  const identity = event.identity;
+  const userIdentityFromRequest = event.identity;
 
   const AccessToken = Twilio.jwt.AccessToken;
 
@@ -28,7 +28,7 @@ exports.handler = function (context, event, callback) {
     twilioAccountSid,
     twilioApiKey,
     twilioApiSecret,
-    { identity: identity }
+    { identity: userIdentityFromRequest }
   );
 
   const VoiceGrant = AccessToken.VoiceGrant;
