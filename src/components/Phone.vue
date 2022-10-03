@@ -53,7 +53,7 @@ export default {
 
     // add an 'error' event listener to the Device instance
     this.device.addListener('error', (twilioError) => {
-      console.log(`Twilio Device error: ${twilioError.message}`)
+      console.error(`Twilio Device error: ${twilioError.message}`)
     });
   }
 };
