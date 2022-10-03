@@ -43,6 +43,8 @@ export default {
       const data = await response.json();
       const token = data.token;
       console.log('token :>> ', token);
+      
+      // create a new Device, save the device instance, add an 'error' event listener
   },
 };
 </script>
